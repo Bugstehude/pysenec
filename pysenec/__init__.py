@@ -82,6 +82,10 @@ class Senec:
         Value is negative when power is exported to grid.
         """
         return self._raw["ENERGY"]["GUI_GRID_POW"]
+    
+    @property
+    def wallbox_complete(self) -> float:
+        return self._raw["STATISTIC"]["LIVE_WB_ENERGY"]
 
     async def update(self):
         await self.read_senec_v21()
@@ -112,6 +116,7 @@ class Senec:
             "PWR_UNIT": {"POWER_L1": "", "POWER_L2": "", "POWER_L3": ""},
             "PM1OBJ1": {"FREQ": "", "U_AC": "", "I_AC": "", "P_AC": "", "P_TOTAL": ""},
             "PM1OBJ2": {"FREQ": "", "U_AC": "", "I_AC": "", "P_AC": "", "P_TOTAL": ""},
+            "STATISTIC": {"LIVE_WB_ENERGY": ""},
         }
 
         async with self.websession.post(self.url, json=form) as res:
