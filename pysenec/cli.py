@@ -19,6 +19,7 @@ async def run(host, verbose=False):
         print(
             f"Grid: exported {senec.grid_exported_power / 1000 :.3f} kW, imported {senec.grid_imported_power / 1000 :.3f} kW"
         )
+        print(f"Wallbox Energy: {senec.wallbox_complete / 1000 :.3f} kW")
         if verbose:
             pprint(senec.raw_status)
 
