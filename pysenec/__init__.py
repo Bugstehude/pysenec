@@ -85,7 +85,7 @@ class Senec:
     
     @property
     def wallbox_complete(self) -> float:
-        return self._raw["STATISTIC"]["LIVE_WB_ENERGY"]
+        return abs(self._raw["STATISTIC"]["LIVE_WB_ENERGY"])
 
     async def update(self):
         await self.read_senec_v21()
